@@ -3,8 +3,6 @@ package com.dharma.spring.form.controllers;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -22,9 +20,6 @@ import com.dharma.spring.form.model.Product;
 
 @Controller
 public class ProductController {
-
-	private static final Logger logger = LoggerFactory
-			.getLogger(ProductController.class);
 
 	private Map<Integer, Product> products = null;
 
@@ -49,7 +44,6 @@ public class ProductController {
 
 	@RequestMapping(value = "/product/save", method = RequestMethod.GET)
 	public String saveProductPage(Model model) {
-		logger.info("Returning productSave.jsp page");
 		return "productSave";
 	}
 
@@ -59,10 +53,8 @@ public class ProductController {
 			BindingResult bindingResult,
 			Model model) {
 		if (bindingResult.hasErrors()) {
-			logger.info("Returning productSave.jsp page");
 			return "productSave";
 		}
-		logger.info("Returning productSaveSuccess.jsp page");
 		model.addAttribute("product", product);
 		products.put(product.getId(), product);
 		return "productSaveSuccess";
